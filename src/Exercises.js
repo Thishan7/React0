@@ -1,4 +1,4 @@
-import { useState } from 'react' ;
+import { useEffect, useState } from 'react' ;
 
 const Exercises = () => {
 
@@ -18,6 +18,11 @@ const Exercises = () => {
         setName('kamal')
     }
 
+    useEffect(()=>{
+        console.log("useEffect ran");
+        console.log("name changed!");
+    },[name]);
+
     return ( 
         <div className="Exercises">
             <h2>My Exercise</h2>
@@ -26,7 +31,7 @@ const Exercises = () => {
             {/* passing arguments to functions */}
             <button onClick={()=>handleClick2('Mario')}>Click me!2</button>
             <p>{name}</p>
-            <button onClick={handleClick3}>Change pasindu</button>
+            <button onClick={handleClick3}>Change Name</button>
         </div>
      );
 }
