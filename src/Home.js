@@ -1,36 +1,29 @@
 import { useEffect, useState } from "react";
 import BlogList from "./BlogList";
+import useFetch from "./usefetch";
 
 const Home = () => {
-    
-const title1 = "All blogs";  
-const title2 = "Mario's blogs";
-const [blogs, setBlogs] = useState(null)
+
+  const title1 = "All blogs";
+  const { data: blogs, isPendig, error } = useFetch('http://localhost:8000/blogs');
 
 
-useEffect (()=>{
-  fetch("http://localhost:8000/blogs")
-  .then(res => {
-    return res.json();
-  })
-  .then(data =>{
-    console.log(data);
-    setBlogs(data);
-  })
-},[])
-useEffect(()=>{
-console.log("use effect run");
-},[]);
+
+  useEffect(() => {
+    console.log("use effect run");
+  }, []);
 
   return (
     <div className="home">
-        {/* passing data to other js fle */}
+      {error && <div>{error}</div>}
+      {isPendig && <h1>Loading.....</h1>}
+      {/* passing data to other js fle */}
       {blogs && <BlogList blogs={blogs} title={title1} />}
     </div>
   );
 }
- 
-export default Home; 
+
+export default Home;
 
 
 
