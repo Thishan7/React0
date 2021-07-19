@@ -10,7 +10,7 @@ const Exercises = () => {
     }
 
     const handleClick2 = (name) => {
-        console.log('hellow'+ ' ' + name)
+        console.log('hellow'+ name)
     }
 
     //changing pasindu by clicking button

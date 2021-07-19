@@ -6,8 +6,10 @@ const useFctch = (url) => {
     const [error, setError] = useState(null);
 
     useEffect(() => {
+        const abortContent = new AbortController();
+
         setTimeout(() => {
-            fetch(url)
+            fetch(url, { signal: abortContent.signal })
 
                 .then(res => {
                     //if data coudl not reach to the resource from the server
@@ -25,11 +27,20 @@ const useFctch = (url) => {
 
                 //catch any kind of network error (if we cannot reach the server this fires)
                 .catch(err => {
+                    if(err.name === 'AbortError')
+                    {
+                        console.log("fetch aborted");
+                    }
+                    else
+                    {
                     setIsPending(false);
                     //set error message using setError() function, This catch any 'throw Error' property too
                     setError(err.message);
+                    }
                 })
         }, 1000);
+
+        return () => abortContent.abort();
     }, [url]);
 
 
