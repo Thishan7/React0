@@ -6,6 +6,7 @@ import Exercises from './Exercises';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import Create from './Create';
 import BlogDetails from './BlogDetails';
+import NotFound from './NotFOund';
 function App() {
   // const title = "This is title";
   // const number = 50;
@@ -32,6 +33,10 @@ function App() {
 
             <Route path="/blogDetails/:id">
               <BlogDetails/>
+            </Route>
+
+            <Route path="*">
+              <NotFound/>
             </Route>
 
           </Switch>
