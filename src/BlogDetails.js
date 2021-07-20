@@ -16,13 +16,6 @@ const BlogDetails = () => {
         })
     }
 
-    // .then(()=>{
-    //     console.log('new b log added');
-    //     setIspending(false);
-    //     //history.go(-1); after submitting the page it redirects to the page before you were.
-    //     history.push('/'); //forward user to homepage
-    // }
-
     return (
         <div className="blog-details">
             {/* <h2>Blog Details - {id} </h2> */}
@@ -34,7 +27,7 @@ const BlogDetails = () => {
                 <p>Written by: {blog.author}</p> <br />
                 <div> {blog.body}</div>
             </article>)}
-            <button onClick = {handleDelete}>Delete</button>
+            {!isPendig &&<button onClick = {handleDelete}>Delete</button>}
         </div>
 
 
