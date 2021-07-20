@@ -6,12 +6,15 @@ const Create = () => {
     const [title, setTitle] = useState('');
     const [body, setContent] = useState('');
     const [author, setAuthor] = useState('Mario');
+    const [isPending, setIspending] = useState(false);//changing button when saving
 
     const handleSubmit = (e) => {
         //preventing refreshing page when pressing submit button
         e.preventDefault();
         const blog = { title, body, author };
         console.log(blog);
+
+        setIspending(true);
 
         fetch('http://localhost:8000/blogs',{
         method : 'POST',//specifies method
@@ -20,6 +23,7 @@ const Create = () => {
         })
         .then(()=>{
             console.log('new b log added');
+            setIspending(false);
         })
 
     }
@@ -53,10 +57,9 @@ const Create = () => {
                 <option value="mario">Mario</option>
                 <option value="yoshi">Yoshi</option>
             </select>
-            <button>Add Blog</button>
-            <p>{title}</p>
-            <p>{body}</p>
-            <p>{author}</p>
+            {!isPending&&<button>Add Blog</button>}
+            {isPending&&<button disabled>Saving Blog</button>}
+      
         </form>
     </div> );
 }
