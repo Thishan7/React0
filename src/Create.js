@@ -1,5 +1,5 @@
 import { useState } from "react";
-
+import { useHistory } from "react-router"; 
 
 const Create = () => {
 
@@ -7,6 +7,8 @@ const Create = () => {
     const [body, setContent] = useState('');
     const [author, setAuthor] = useState('Mario');
     const [isPending, setIspending] = useState(false);//changing button when saving
+    const history = useHistory();
+
 
     const handleSubmit = (e) => {
         //preventing refreshing page when pressing submit button
@@ -24,6 +26,8 @@ const Create = () => {
         .then(()=>{
             console.log('new b log added');
             setIspending(false);
+            //history.go(-1); after submitting the page it redirects to the page before you were.
+            history.push('/'); //forward user to homepage
         })
 
     }
