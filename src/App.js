@@ -5,6 +5,7 @@ import Home from './Home'
 import Exercises from './Exercises';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import Create from './Create';
+import BlogDetails from './BlogDetails';
 function App() {
   // const title = "This is title";
   // const number = 50;
@@ -27,6 +28,10 @@ function App() {
 
             <Route path="/exercise">
               <Exercises/>
+            </Route>
+
+            <Route path="/blogDetails/:id">
+              <BlogDetails/>
             </Route>
 
           </Switch>

@@ -11,7 +11,8 @@ const Home = () => {
       {error && <div>{error}</div>}
       {isPendig && <h1>Loading.....</h1>}
       {/* passing data to other js fle */}
-      {blogs && <BlogList blogs={blogs} title={title1} />}
+      {/* {blogs && <BlogList blogs={blogs} title={title1} />} */}
+      {blogs && <BlogList blogs={blogs} title1={title1} />}
     </div>
   );
 }
