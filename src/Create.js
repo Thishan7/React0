@@ -4,12 +4,29 @@ import { useState } from "react";
 const Create = () => {
 
     const [title, setTitle] = useState('');
-    const [content, setContent] = useState('');
+    const [body, setContent] = useState('');
     const [author, setAuthor] = useState('Mario');
+
+    const handleSubmit = (e) => {
+        //preventing refreshing page when pressing submit button
+        e.preventDefault();
+        const blog = { title, body, author };
+        console.log(blog);
+
+        fetch('http://localhost:8000/blogs',{
+        method : 'POST',//specifies method
+        headers : {"Content-Type":"application/json"},//specifies type of content being sent to the server
+        body : JSON.stringify(blog) //turn blog into json string
+        })
+        .then(()=>{
+            console.log('new b log added');
+        })
+
+    }
 
     return ( <div className="create">
         <h1>Create a new blog</h1>
-        <form >
+        <form onSubmit={handleSubmit}>
 
             <label >Blog title:</label>
             <input 
@@ -22,7 +39,7 @@ const Create = () => {
             <label>Blog body:</label>
             <textarea 
             required
-            value = {content}
+            value = {body}
             onChange = {(e)=>setContent(e.target.value)}
             
             />
@@ -38,7 +55,7 @@ const Create = () => {
             </select>
             <button>Add Blog</button>
             <p>{title}</p>
-            <p>{content}</p>
+            <p>{body}</p>
             <p>{author}</p>
         </form>
     </div> );
